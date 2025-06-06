@@ -1,3 +1,4 @@
+.gitignore
 .vscode/
 
 baixados_rais/
@@ -6,3 +7,5 @@ rais_2/
 
 indices/
 indices2/
+*/__pycache__/
+*.pyc
