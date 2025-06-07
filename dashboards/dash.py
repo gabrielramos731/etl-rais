@@ -105,7 +105,9 @@ elif select_reg == 'Município':
                                                                 ORDER BY dim_municipio.nome''',
                                                                 params={"meso": meso, "micro": micro},
                                                                 ttl='10m'))
-    
+    slice_ano = st.slider('Selecione o intervalo dos anos',
+                          min_value=2007, max_value=2024, 
+                          value=(2007, 2024), step=1)
     df = conn.query('''SELECT
         f.ano,
         uf.nome AS uf,
@@ -123,8 +125,10 @@ elif select_reg == 'Município':
         JOIN dim_mesorregiao meso ON dmicro.id_mesorregiao = meso.id_mesorregiao
         JOIN dim_uf uf ON meso.id_uf = uf.id_uf
         WHERE uf.nome = :uf
-        ''', 
-        params={"uf":uf},
+            AND f.ano BETWEEN :start_year AND :end_year''', 
+        params={"uf":uf, 
+                "start_year": slice_ano[0], 
+                "end_year": slice_ano[1]},
         ttl="10m")
     
     st.dataframe(df)
