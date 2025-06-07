@@ -5,10 +5,10 @@ import time
 def load_csv_to_db():
     conn = psycopg2.connect(
         host="localhost",
-        database="postgres",
-        user="postgres",
+        database="rais",
+        user="gabriel",
         password="230204",
-        port="5433"
+        port="5432"
     )
     conn.autocommit = True
     cur = conn.cursor()

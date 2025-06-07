@@ -1,5 +1,6 @@
 .gitignore
 .vscode/
+.streamlit/
 
 baixados_rais/
 dados_extraidos/
